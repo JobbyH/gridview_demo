@@ -3,6 +3,7 @@
 /** @var yii\web\View $this */
 
 use \yii\grid\GridView;
+use app\models\Supplier;
 
 $this->title = 'GridView Demo';
 
@@ -20,7 +21,7 @@ echo GridView::widget([
 
         [
             'attribute' => 'id',
-            'filter' => ['aa' => '>10', 'bb' => '<10', 'cc' => '>=10', 'dd' => '<=10'],
+            'filter' => Supplier::ID_DROPDOWNLIST_MAP,
             'filterInputOptions' => ['prompt' => 'all id', 'class' => 'form-control', 'id' => null],
             'headerOptions' => ['width' => '140'],
 //            'enableSorting' => false

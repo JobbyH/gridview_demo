@@ -26,6 +26,22 @@ class GridController extends Controller
         if (!empty($get['Supplier']['code'])) {
             $query = $query->andFilterWhere(['like', 'code', $get['Supplier']['code']]);
         }
+        if (!empty($get['Supplier']['id'])) {
+
+            $search = $get['Supplier']['id'];
+            if ($search == '>10') {
+                $query = $query->andFilterWhere(['>', 'id', 10]);
+            }
+            if ($search == '<10') {
+                $query = $query->andFilterWhere(['<', 'id', 10]);
+            }
+            if ($search == '>=10') {
+                $query = $query->andFilterWhere(['>=', 'id', 10]);
+            }
+            if ($search == '<=10') {
+                $query = $query->andFilterWhere(['<=', 'id', 10]);
+            }
+        }
 
         $render['dataProvider'] = new ActiveDataProvider([
             'query' => $query,

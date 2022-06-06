@@ -47,4 +47,12 @@ class Supplier extends \yii\db\ActiveRecord
             't_status' => '状态',
         ];
     }
+
+    const ID_DROPDOWNLIST_MAP = [
+        '>10' => '>10',
+        '<10' => '<10',
+        '>=10' => '>=10',
+        '<=10' => '<=10'
+    ];
+
 }
