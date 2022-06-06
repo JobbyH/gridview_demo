@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 
+use Yii;
 use app\models\Supplier;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -9,13 +10,25 @@ class GridController extends Controller
 {
     public function actionList()
     {
-        //$suppliers = Supplier::find()->where(['t_status'=>'ok'])->all();
 
+        $get = Yii::$app->request->get();
         $where = [];
         $render = [];
 
+        if (!empty($get['Supplier']['t_status'])) {
+            $where['t_status'] = $get['Supplier']['t_status'];
+        }
+
+        $query = Supplier::find()->where($where);
+        if (!empty($get['Supplier']['name'])) {
+            $query = $query->andFilterWhere(['like', 'name', $get['Supplier']['name']]);
+        }
+        if (!empty($get['Supplier']['code'])) {
+            $query = $query->andFilterWhere(['like', 'code', $get['Supplier']['code']]);
+        }
+
         $render['dataProvider'] = new ActiveDataProvider([
-            'query' => Supplier::find()->where($where),
+            'query' => $query,
             'pagination' => [
                 'pageSize' => 10,
             ],
@@ -25,6 +38,8 @@ class GridController extends Controller
                 ]
             ],
         ]);
+
+        $render['searchModel'] = new Supplier();
 
         return $this->render('list', $render);
     }

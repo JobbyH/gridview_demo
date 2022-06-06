@@ -2,41 +2,53 @@
 
 /** @var yii\web\View $this */
 
-use yii\web\View;
 use \yii\grid\GridView;
 
 $this->title = 'GridView Demo';
 
-
-
-
-
-    echo GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            // ['class' => 'yii\grid\SerialColumn'],
-            'id',
-            [
-                'label' => '姓名',
-                'value' => function ($model) {
-                    return $model->name;
-                }
-            ],
-            [
-                'label' => '编码',
-                'value' => function ($model) {
-                    return $model->code;
-                }
-            ],
-            [
-                'label' => '状态',
-                'value' => function ($model) {
-                    return $model->t_status;
-                }
-            ],
+echo GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'showFooter'=>true,
+    'showHeader' => true,
+    'columns' => [
+        [
+            'class' => yii\grid\CheckboxColumn::class,
+            'headerOptions' => ['width' => '100'],
+            'footer' => '<a class="btn btn-primary btn-sm" onclick=delall("'.Yii::$app->urlManager->createUrl(['grid/export']).'")>导出</a>'
         ],
-    ]);
 
+        [
+            'attribute' => 'id',
+            'filter' => ['aa' => '>10', 'bb' => '<10', 'cc' => '>=10', 'dd' => '<=10'],
+            'filterInputOptions' => ['prompt' => 'all id', 'class' => 'form-control', 'id' => null],
+            'headerOptions' => ['width' => '140'],
+//            'enableSorting' => false
+        ],
+
+        [
+            'attribute' => 'name',
+            'enableSorting' => false,
+            'headerOptions' => ['width' => '200'],
+        ],
+
+        [
+            'label' => '编码',
+            'attribute' => 'code',
+            'enableSorting' => false,
+            'headerOptions' => ['width' => '200'],
+        ],
+        [
+            'label' => '状态',
+            'attribute' => 't_status',
+            'filter' => ['ok' => 'ok', 'hold' => 'hold'],
+            'filterInputOptions' => ['prompt' => 'all t_status', 'class' => 'form-control', 'id' => null],
+            'enableSorting' => false,
+            'headerOptions' => ['width' => '200'],
+        ],
+        ['class' => 'yii\grid\ActionColumn', 'header' => '操作'],
+    ],
+]);
 
 
     ?>
