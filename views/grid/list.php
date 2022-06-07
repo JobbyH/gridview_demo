@@ -1,7 +1,7 @@
+<style>
+    a.x_hidden {top: 0px;left: 0px;position: fixed;}
+</style>
 <?php
-
-/** @var yii\web\View $this */
-
 use \yii\grid\GridView;
 use app\models\Supplier;
 use yii\bootstrap4\Modal;
@@ -65,11 +65,11 @@ echo GridView::widget([
 ]);
 
 
-echo Html::a('创建', '#', [
+echo Html::a('', '#', [
     'id' => 'create',
     'data-toggle' => 'modal',
     'data-target' => '#create-modal',
-    'class' => 'btn btn-success',
+    'class' => 'btn btn-success x_hidden',
 ]);
 
 Modal::begin([
@@ -77,7 +77,7 @@ Modal::begin([
 //    'header' => '<h4 class="modal-title">创建</h4>',
 //    'bodyOptions' => [''],
     'footer' => '<a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>',
-    'title' => 'xxuuee'
+//    'title' => 'xxuuee'
 ]);
 Modal::end();
 
@@ -106,9 +106,10 @@ $('input[name="selection[]"], input[name="selection_all"]').click(function() {
               all_checked = false;
           }
         });
-    }, 1000);
-    
-    
+        if (all_checked) {
+            $("#create").click();
+        } 
+    }, 500);
 });
 JS;
 $this->registerJs($js, \yii\web\View::POS_END);
