@@ -4,6 +4,9 @@
 
 use \yii\grid\GridView;
 use app\models\Supplier;
+use yii\bootstrap4\Modal;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'GridView Demo';
 
@@ -24,7 +27,7 @@ echo GridView::widget([
             'filter' => Supplier::ID_DROPDOWNLIST_MAP,
             'filterInputOptions' => ['prompt' => 'all id', 'class' => 'form-control', 'id' => null],
             'headerOptions' => ['width' => '140'],
-//            'enableSorting' => false
+//            'enableSorting' => false,
         ],
 
         [
@@ -47,9 +50,66 @@ echo GridView::widget([
             'enableSorting' => false,
             'headerOptions' => ['width' => '200'],
         ],
-        ['class' => 'yii\grid\ActionColumn', 'header' => '操作'],
+//        ['class' => 'yii\grid\ActionColumn', 'header' => '操作'],
     ],
+    'emptyText' => '暂时没有任何生活记录！',
+//    'layout' => "{items}\n{summary}\n{pager}",
+//    'pager' => [
+//        //'options' => ['class' => 'hidden']
+//        /* 默认不显示的按钮设置 */
+//        'firstPageLabel' => '首页 ',
+//        'prevPageLabel' => '上一页 ',
+//        'nextPageLabel' => '下一页 ',
+//        'lastPageLabel' => '尾页'
+//    ]
 ]);
 
 
+echo Html::a('创建', '#', [
+    'id' => 'create',
+    'data-toggle' => 'modal',
+    'data-target' => '#create-modal',
+    'class' => 'btn btn-success',
+]);
+
+Modal::begin([
+    'id' => 'create-modal',
+//    'header' => '<h4 class="modal-title">创建</h4>',
+//    'bodyOptions' => [''],
+    'footer' => '<a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>',
+    'title' => 'xxuuee'
+]);
+Modal::end();
+
+$requestUrl = Url::toRoute('create');
+$js = <<<JS
+    $(document).on('click', '#create', function () {
+        var html = '<a>All items in this current page have been selected.</a>';
+        html += '<a href="#">Select all items that match this search across current page.</a>';
+       $('.modal-body').html(html);
+       // $.get('{$requestUrl}', {},
+       //     function (data) {
+       //         $('.modal-body').html(data);
+       //     }  
+       // );
+    });
+JS;
+$this->registerJs($js);
+
+$js = <<<JS
+$('input[name="selection[]"], input[name="selection_all"]').click(function() {
+    var all_checked = true;
+    setTimeout(function() {
+        $('input[name="selection[]"').each(function() {
+          // console.info(this, this.checked);
+          if (!this.checked) {
+              all_checked = false;
+          }
+        });
+    }, 1000);
+    
+    
+});
+JS;
+$this->registerJs($js, \yii\web\View::POS_END);
     ?>
