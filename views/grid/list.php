@@ -151,14 +151,21 @@ $this->registerJs($js);
 $js = <<<JS
 $('input[name="selection[]"], input[name="selection_all"]').click(function() {
     var all_checked = true;
+    var all_canceled = true;
     setTimeout(function() {
         $('input[name="selection[]"').each(function() {
           if (!this.checked) {
               all_checked = false;
           }
+          if (this.checked) {
+              all_canceled = false;
+          } 
         });
         if (all_checked) {
             $("#create").click();
+        }
+        if (all_canceled) {
+            $("#export_all").attr('checked', false);
         } 
     }, 500);
 });
