@@ -64,7 +64,7 @@ echo GridView::widget([
         [
             'attribute' => 'id',
             'filter' => Supplier::ID_DROPDOWNLIST_MAP,
-            'filterInputOptions' => ['prompt' => 'all id', 'class' => 'form-control', 'id' => null, 'value' => $_GET['Supplier']['id']],
+            'filterInputOptions' => ['prompt' => 'all id', 'class' => 'form-control', 'id' => null, 'value' => $_GET['Supplier']['id']??''],
             'headerOptions' => ['width' => '140'],
 //            'enableSorting' => false,
         ],
@@ -73,7 +73,7 @@ echo GridView::widget([
             'attribute' => 'name',
             'enableSorting' => false,
             'headerOptions' => ['width' => '200'],
-            'filterInputOptions' => ['value' => $_GET['Supplier']['name'], 'class' => 'form-control']
+            'filterInputOptions' => ['value' => $_GET['Supplier']['name']??'', 'class' => 'form-control']
         ],
 
         [
@@ -81,13 +81,13 @@ echo GridView::widget([
             'attribute' => 'code',
             'enableSorting' => false,
             'headerOptions' => ['width' => '200'],
-            'filterInputOptions' => ['value' => $_GET['Supplier']['code'], 'class' => 'form-control']
+            'filterInputOptions' => ['value' => $_GET['Supplier']['code']??'', 'class' => 'form-control']
         ],
         [
             'label' => '状态',
             'attribute' => 't_status',
             'filter' => ['ok' => 'ok', 'hold' => 'hold'],
-            'filterInputOptions' => ['prompt' => 'all t_status', 'class' => 'form-control', 'id' => null, 'value' => $_GET['Supplier']['t_status']],
+            'filterInputOptions' => ['prompt' => 'all t_status', 'class' => 'form-control', 'id' => null, 'value' => $_GET['Supplier']['t_status']??''],
             'enableSorting' => false,
             'headerOptions' => ['width' => '200'],
         ],
