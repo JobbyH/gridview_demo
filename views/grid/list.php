@@ -8,27 +8,14 @@ $b = '<a>All conversations in this search have been selected.</a><br/> <a class=
 <script>
     function goto() {
         var ids = [];
-
         $('input[name="selection[]"').each(function() {
             if (this.checked) {
                 ids.push(this.value);
             }
-            // console.info(this.value)
         });
 
         if (ids.length > 0) {
-            var post = {ids:ids, all: 0, search: location.search.substr(1)};
-            // $.post("/index.php?r=grid/export", post, function(data, status){
-            //
-            // });
-
-            // var url = location.origin + pathname + '?r=grid/export&' + location.search.substr(1);
-            // var url = location.origin + location.pathname + '?r=grid/export&ids=' + ids.join(",");
-
             var export_all = $("#export_all").attr('checked') ? 1 : 0;
-
-
-
             var url = location.origin + location.pathname + '?r=grid/export&ids=' + ids.join(",")
                 + '&id=' + $('select[name="Supplier[id]"]').find("option:selected").val()
                 + '&name=' + $('#supplier-name').val()
@@ -36,13 +23,9 @@ $b = '<a>All conversations in this search have been selected.</a><br/> <a class=
                 + '&t_status=' + $('select[name="Supplier[t_status]"]').find("option:selected").val()
                 + '&all=' + export_all;
 
-            console.info(url, $("#export_all").attr('checked'), '==================')
-
             location.href = url;
 
         }
-
-        //
     }
 
     function selectall() {
@@ -63,7 +46,6 @@ use \yii\grid\GridView;
 use app\models\Supplier;
 use yii\bootstrap4\Modal;
 use yii\helpers\Html;
-use yii\helpers\Url;
 
 $this->title = 'GridView Demo';
 
@@ -76,7 +58,7 @@ echo GridView::widget([
         [
             'class' => yii\grid\CheckboxColumn::class,
             'headerOptions' => ['width' => '100'],
-            'footer' => '<a class="btn btn-primary btn-sm" onclick=goto()>Export</a><br/><input type="checkbox" id="export_all" disabled="disabled">select all</input>'
+            'footer' => '<a class="btn btn-primary btn-sm" onclick=goto()>Export</a><br/><input type="checkbox" id="export_all" disabled="disabled">all selected</input>'
         ],
 
         [
@@ -140,7 +122,6 @@ Modal::begin([
 ]);
 Modal::end();
 
-$requestUrl = Url::toRoute('create');
 $js = <<<JS
     $(document).on('click', '#create', function () {
        $('.modal-body').html("<?=$a");
