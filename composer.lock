@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7dbd8a39954b686587ce8bc069c074b0",
+    "content-hash": "a973addecfa2040a73918abda938727c",
     "packages": [
         {
             "name": "bower-asset/inputmask",
@@ -339,52 +339,6 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/v4.14.0"
             },
             "time": "2021-12-25T01:21:49+00:00"
-        },
-        {
-            "name": "johnnylei/csv",
-            "version": "1.1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/johnnylei/yii2-csv.git",
-                "reference": "fd69e83ace5cb41b747261ac2778f4c254d8c3f9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/johnnylei/yii2-csv/zipball/fd69e83ace5cb41b747261ac2778f4c254d8c3f9",
-                "reference": "fd69e83ace5cb41b747261ac2778f4c254d8c3f9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "yiisoft/yii2": ">=2.0.0"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "johnnylei\\csv\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "johnny Lei",
-                    "email": "leiyuqing_jing@163.com"
-                }
-            ],
-            "description": "Yii2 csv",
-            "homepage": "https://github.com/johnnylei/yii2-csv.git",
-            "keywords": [
-                "csv",
-                "yii2"
-            ],
-            "support": {
-                "issues": "https://github.com/johnnylei/yii2-csv/issues",
-                "source": "https://github.com/johnnylei/yii2-csv.git"
-            },
-            "time": "2017-06-19T04:27:09+00:00"
         },
         {
             "name": "npm-asset/bootstrap",

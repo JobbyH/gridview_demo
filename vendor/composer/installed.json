@@ -1268,55 +1268,6 @@
             "install-path": "../guzzlehttp/psr7"
         },
         {
-            "name": "johnnylei/csv",
-            "version": "1.1.4",
-            "version_normalized": "1.1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/johnnylei/yii2-csv.git",
-                "reference": "fd69e83ace5cb41b747261ac2778f4c254d8c3f9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/johnnylei/yii2-csv/zipball/fd69e83ace5cb41b747261ac2778f4c254d8c3f9",
-                "reference": "fd69e83ace5cb41b747261ac2778f4c254d8c3f9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "yiisoft/yii2": ">=2.0.0"
-            },
-            "time": "2017-06-19T04:27:09+00:00",
-            "type": "yii2-extension",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "johnnylei\\csv\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "johnny Lei",
-                    "email": "leiyuqing_jing@163.com"
-                }
-            ],
-            "description": "Yii2 csv",
-            "homepage": "https://github.com/johnnylei/yii2-csv.git",
-            "keywords": [
-                "csv",
-                "yii2"
-            ],
-            "support": {
-                "issues": "https://github.com/johnnylei/yii2-csv/issues",
-                "source": "https://github.com/johnnylei/yii2-csv.git"
-            },
-            "install-path": "../johnnylei/csv"
-        },
-        {
             "name": "myclabs/deep-copy",
             "version": "1.11.0",
             "version_normalized": "1.11.0.0",

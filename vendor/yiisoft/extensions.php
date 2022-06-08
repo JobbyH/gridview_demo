@@ -48,13 +48,4 @@ return array (
       '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer/src',
     ),
   ),
-  'johnnylei/csv' => 
-  array (
-    'name' => 'johnnylei/csv',
-    'version' => '1.1.4.0',
-    'alias' => 
-    array (
-      '@johnnylei/csv' => $vendorDir . '/johnnylei/csv',
-    ),
-  ),
 );

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '829c1175f0d47be024738a3c15ea1a2cd62c7d6b',
+        'reference' => 'd69fa753d58bc973ec81b5c985743e47c2512bd8',
         'name' => 'yiisoft/yii2-app-basic',
         'dev' => true,
     ),
@@ -207,15 +207,6 @@
             'aliases' => array(),
             'reference' => 'c94a94f120803a18554c1805ef2e539f8285f9a2',
             'dev_requirement' => true,
-        ),
-        'johnnylei/csv' => array(
-            'pretty_version' => '1.1.4',
-            'version' => '1.1.4.0',
-            'type' => 'yii2-extension',
-            'install_path' => __DIR__ . '/../johnnylei/csv',
-            'aliases' => array(),
-            'reference' => 'fd69e83ace5cb41b747261ac2778f4c254d8c3f9',
-            'dev_requirement' => false,
         ),
         'myclabs/deep-copy' => array(
             'pretty_version' => '1.11.0',
@@ -766,7 +757,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '829c1175f0d47be024738a3c15ea1a2cd62c7d6b',
+            'reference' => 'd69fa753d58bc973ec81b5c985743e47c2512bd8',
             'dev_requirement' => false,
         ),
         'yiisoft/yii2-bootstrap4' => array(

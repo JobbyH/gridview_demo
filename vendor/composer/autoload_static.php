@@ -41,10 +41,6 @@ class ComposerStaticIniteb7f1a93943a457534612eda7174fc37
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
-        'j' => 
-        array (
-            'johnnylei\\csv\\' => 14,
-        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
@@ -142,10 +138,6 @@ class ComposerStaticIniteb7f1a93943a457534612eda7174fc37
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-        ),
-        'johnnylei\\csv\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/johnnylei/csv',
         ),
         'cebe\\markdown\\' => 
         array (
