@@ -1,6 +1,48 @@
+<?php
+$a = '<a>All items in this current page have been selected.</a><br/><a class=\'s_all\' onclick=\'selectall()\'>Select all items that match this search</a>';
+$b = '<a>All conversations in this search have been selected.</a><br/> <a class=\'c_all\' onclick=\'cancelall()\'>clear selection.</a>';
+?>
 <style>
     a.x_hidden {top: 0px;left: 0px;position: fixed;}
 </style>
+<script>
+    function goto() {
+        var ids = [];
+
+        $('input[name="selection[]"').each(function() {
+            if (this.checked) {
+                // ids[] = this.value;
+                ids.push(this.value);
+            }
+            // console.info(this.value)
+        });
+
+        console.info(ids)
+        console.info(ids.length);
+
+        if (ids.length > 0) {
+            // this.location.href = '/index.php?r=grid/export';
+            var post = {ids:ids, all: 0, k: {}};
+            $.post("/index.php?r=grid/export", post, function(data, status){
+
+            });
+        }
+
+        //
+    }
+    function selectall() {
+        $("#export_all").attr('checked', true);
+        $("div.modal-body").html("<?=$b ?>");
+    }
+
+    function cancelall() {
+        $("#export_all").attr('checked', false);
+        $("input[name='selection_all']").click();
+        $("a.close_btn").click();
+        $('.modal-body').html("<?=$a ?>");
+
+    }
+</script>
 <?php
 use \yii\grid\GridView;
 use app\models\Supplier;
@@ -19,7 +61,7 @@ echo GridView::widget([
         [
             'class' => yii\grid\CheckboxColumn::class,
             'headerOptions' => ['width' => '100'],
-            'footer' => '<a class="btn btn-primary btn-sm" onclick=delall("'.Yii::$app->urlManager->createUrl(['grid/export']).'")>导出</a>'
+            'footer' => '<a class="btn btn-primary btn-sm" onclick=goto()>Export</a><br/><input type="checkbox" id="export_all" disabled="disabled">select all</input>'
         ],
 
         [
@@ -52,7 +94,7 @@ echo GridView::widget([
         ],
 //        ['class' => 'yii\grid\ActionColumn', 'header' => '操作'],
     ],
-    'emptyText' => '暂时没有任何生活记录！',
+    'emptyText' => 'No Result Searched!',
 //    'layout' => "{items}\n{summary}\n{pager}",
 //    'pager' => [
 //        //'options' => ['class' => 'hidden']
@@ -76,7 +118,7 @@ Modal::begin([
     'id' => 'create-modal',
 //    'header' => '<h4 class="modal-title">创建</h4>',
 //    'bodyOptions' => [''],
-    'footer' => '<a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>',
+    'footer' => '<a href="#" class="btn btn-primary close_btn" data-dismiss="modal">Close</a>',
 //    'title' => 'xxuuee'
 ]);
 Modal::end();
@@ -84,14 +126,7 @@ Modal::end();
 $requestUrl = Url::toRoute('create');
 $js = <<<JS
     $(document).on('click', '#create', function () {
-        var html = '<a>All items in this current page have been selected.</a>';
-        html += '<a href="#">Select all items that match this search across current page.</a>';
-       $('.modal-body').html(html);
-       // $.get('{$requestUrl}', {},
-       //     function (data) {
-       //         $('.modal-body').html(data);
-       //     }  
-       // );
+       $('.modal-body').html("<?=$a");
     });
 JS;
 $this->registerJs($js);
@@ -101,7 +136,6 @@ $('input[name="selection[]"], input[name="selection_all"]').click(function() {
     var all_checked = true;
     setTimeout(function() {
         $('input[name="selection[]"').each(function() {
-          // console.info(this, this.checked);
           if (!this.checked) {
               all_checked = false;
           }
