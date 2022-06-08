@@ -49,10 +49,10 @@ class Supplier extends \yii\db\ActiveRecord
     }
 
     const ID_DROPDOWNLIST_MAP = [
-        '>10' => '>10',
-        '<10' => '<10',
-        '>=10' => '>=10',
-        '<=10' => '<=10'
+        'g10' => '>10',
+        'l10' => '<10',
+        'gt10' => '>=10',
+        'lt10' => '<=10'
     ];
 
 }

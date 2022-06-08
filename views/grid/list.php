@@ -11,25 +11,40 @@ $b = '<a>All conversations in this search have been selected.</a><br/> <a class=
 
         $('input[name="selection[]"').each(function() {
             if (this.checked) {
-                // ids[] = this.value;
                 ids.push(this.value);
             }
             // console.info(this.value)
         });
 
-        console.info(ids)
-        console.info(ids.length);
-
         if (ids.length > 0) {
-            // this.location.href = '/index.php?r=grid/export';
-            var post = {ids:ids, all: 0, k: {}};
-            $.post("/index.php?r=grid/export", post, function(data, status){
+            var post = {ids:ids, all: 0, search: location.search.substr(1)};
+            // $.post("/index.php?r=grid/export", post, function(data, status){
+            //
+            // });
 
-            });
+            // var url = location.origin + pathname + '?r=grid/export&' + location.search.substr(1);
+            // var url = location.origin + location.pathname + '?r=grid/export&ids=' + ids.join(",");
+
+            var export_all = $("#export_all").attr('checked') ? 1 : 0;
+
+
+
+            var url = location.origin + location.pathname + '?r=grid/export&ids=' + ids.join(",")
+                + '&id=' + $('select[name="Supplier[id]"]').find("option:selected").val()
+                + '&name=' + $('#supplier-name').val()
+                + '&code=' + $('#supplier-code').val()
+                + '&t_status=' + $('select[name="Supplier[t_status]"]').find("option:selected").val()
+                + '&all=' + export_all;
+
+            console.info(url, $("#export_all").attr('checked'), '==================')
+
+            location.href = url;
+
         }
 
         //
     }
+
     function selectall() {
         $("#export_all").attr('checked', true);
         $("div.modal-body").html("<?=$b ?>");
@@ -67,7 +82,7 @@ echo GridView::widget([
         [
             'attribute' => 'id',
             'filter' => Supplier::ID_DROPDOWNLIST_MAP,
-            'filterInputOptions' => ['prompt' => 'all id', 'class' => 'form-control', 'id' => null],
+            'filterInputOptions' => ['prompt' => 'all id', 'class' => 'form-control', 'id' => null, 'value' => $_GET['Supplier']['id']],
             'headerOptions' => ['width' => '140'],
 //            'enableSorting' => false,
         ],
@@ -76,6 +91,7 @@ echo GridView::widget([
             'attribute' => 'name',
             'enableSorting' => false,
             'headerOptions' => ['width' => '200'],
+            'filterInputOptions' => ['value' => $_GET['Supplier']['name'], 'class' => 'form-control']
         ],
 
         [
@@ -83,12 +99,13 @@ echo GridView::widget([
             'attribute' => 'code',
             'enableSorting' => false,
             'headerOptions' => ['width' => '200'],
+            'filterInputOptions' => ['value' => $_GET['Supplier']['code'], 'class' => 'form-control']
         ],
         [
             'label' => '状态',
             'attribute' => 't_status',
             'filter' => ['ok' => 'ok', 'hold' => 'hold'],
-            'filterInputOptions' => ['prompt' => 'all t_status', 'class' => 'form-control', 'id' => null],
+            'filterInputOptions' => ['prompt' => 'all t_status', 'class' => 'form-control', 'id' => null, 'value' => $_GET['Supplier']['t_status']],
             'enableSorting' => false,
             'headerOptions' => ['width' => '200'],
         ],
