@@ -63,7 +63,6 @@ class GridController extends Controller
     public function actionExport() {
 
         $get = Yii::$app->request->get();
-
         if (empty($get)) {
             echo '';exit;
         }
@@ -117,9 +116,22 @@ class GridController extends Controller
             $suppliers = $query->asArray()->all();
         }
 
-        $string = 'id,name,code,t_status'."\n";
+        $fieldArr = explode(',', $get['fields']);
+
+        $string = $get['fields']."\n";
         foreach ($suppliers as $supplier) {
-            $string = $string . $supplier['id'] . ',' . $supplier['name'] . ',' . $supplier['code'] . ',' . $supplier['t_status'] . "\n";
+            $string = $string . $supplier['id'];
+
+            if (in_array('name', $fieldArr)) {
+                $string .= ',' . $supplier['name'];
+            }
+            if (in_array('code', $fieldArr)) {
+                $string .= ',' . $supplier['code'];
+            }
+            if (in_array('t_status', $fieldArr)) {
+                $string .= ',' . $supplier['t_status'];
+            }
+            $string .= "\n";
         }
 
         $string = iconv("utf-8", 'gbk', $string);
